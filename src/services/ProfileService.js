@@ -1,15 +1,15 @@
 import { AppState } from "../AppState";
-import { heroku } from "./AxiosService";
+import { api } from "./AxiosService";
 
 class ProfileService {
   async getProfileById(id) {
-    let res = await heroku.get(`profiles/${id}`);
+    let res = await api.get(`api/profiles/${id}`);
     console.log("[GETTING PROFILE BY ID]", res.data);
     AppState.activeProfile = res.data;
   }
 
   async getPostsById(id) {
-    let res = await heroku.get(`profiles/${id}/posts`);
+    let res = await api.get(`api/profiles/${id}/posts`);
     console.log("[PROFILE POSTS]", res.data.posts);
     AppState.profilePost = res.data.posts;
   }

@@ -1,11 +1,14 @@
 <template>
 
-  <div class="my-3">
+  <div class="my-3 card">
     <div class="div">
       <span class="mx-2">{{ post.creator.name }}</span> <br>
       <span>{{ post.createdAt }}</span> <br>
       <img @click="profilePush()" class="avatar" :src=post.creator.picture alt="Profile Picture"
         :title="post.creator.name">
+    </div>
+    <div v-if="post.creator.id == account.id">
+      <button class="btn btn-danger" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i> </button>
     </div>
     <p>{{ post.body }}</p>
     <img class="postImg" :src=post.imgUrl alt="">
@@ -21,7 +24,10 @@
 import { computed } from "@vue/reactivity";
 import { useRoute, useRouter } from "vue-router";
 import { AppState } from "../AppState";
+import { ref } from "vue";
 import { router } from "../router";
+import { postsService } from "../services/PostsService.js";
+import { logger } from "../utils/Logger.js";
 import Pop from "../utils/Pop";
 
 
@@ -34,7 +40,10 @@ export default {
   setup(props) {
     const router = useRouter()
 
+    const deleting = ref(false)
+
     return {
+      deleting,
       account: computed(() => AppState.account),
 
       profilePush() {
@@ -45,6 +54,18 @@ export default {
           console.error(error)
           // @ts-ignore 
           Pop.error(('[ERROR]'), error.message)
+        }
+      },
+
+      async deletePost(postId){
+        try {
+          // console.log(props.post.id)
+          const yes = await Pop.confirm("Do you want to delete this post?")
+          if(!yes){return}
+          await postsService.delete(postId)
+        } catch (error) {
+          logger.error('[DELETING POST]', error)
+          Pop.error(error)
         }
       }
 

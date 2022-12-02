@@ -2,6 +2,12 @@
 
   <div class="row justify-content-center">
     <div class="col-4 justify-content-center">
+      <PostForm v-if="profile.id" />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-4 justify-content-center">
       <div class="row text-center" v-for="p in posts" :key="p.id">
         <PostCard :post="p" />
       </div>
@@ -16,6 +22,8 @@ import { onMounted } from "vue"
 import { postsService } from "../services/PostsService"
 import { AppState } from '../AppState'
 import PostCard from "../components/PostCard.vue"
+import Pop from "../utils/Pop.js"
+import PostForm from "../components/PostForm.vue"
 
 export default {
   setup() {
@@ -24,7 +32,7 @@ export default {
     });
     async function getAll() {
       try {
-        let posts = await postsService.getAll();
+        await postsService.getAll();
       }
       catch (error) {
         console.error(error);
@@ -33,10 +41,11 @@ export default {
       }
     }
     return {
-      posts: computed(() => AppState.posts.posts)
+      posts: computed(() => AppState.posts.posts),
+      profile: computed(() => AppState.account)
     };
   },
-  components: { PostCard }
+  components: { PostCard, PostForm }
 }
 </script>
 

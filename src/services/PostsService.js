@@ -1,33 +1,39 @@
 import { AppState } from "../AppState";
-import { api, heroku } from "./AxiosService";
+import { Post } from "../models/Post.js";
+import { api } from "./AxiosService";
 
 class PostsService {
   async getById(postId) {
-    const res = await heroku.get(`posts/${postId}`);
+    const res = await api.get(`api/posts/${postId}`);
   }
   async getAll() {
-    const res = await heroku.get("posts");
+    const res = await api.get(`api/posts`);
     console.log("[POSTS]", res.data);
-    AppState.posts = res.data;
+    AppState.posts = res.data
   }
 
   async create(postData) {
-    const res = await heroku.post("posts", postData);
+    const res = await api.post(`api/posts`, postData);
     console.log("[CREATED POST]", res.data);
+    AppState.posts.posts.unshift(res.data)
   }
 
   async createLike(postId) {
-    const res = await heroku.post(`posts/${postId}/like`);
+    const res = await api.post(`api/posts/${postId}/like`);
     console.log("[CREATED LIKE]", res.data);
   }
 
+  // FIXME this is deleting the post but also hiding all the other posts on delete
   async delete(postId) {
-    const res = await heroku.delete(`posts/${postId}`);
+    // debugger
+    const res = await api.delete(`api/posts/${postId}`);
     console.log("[DELETING POST]", res.data);
+    AppState.posts = AppState.posts.posts.filter(p => p.id != postId)
   }
 
+  // TODO come back to this - it was not a requirement for the project
   async edit(postId, postData) {
-    const res = await heroku.put(`posts/${postId}`, postData);
+    const res = await api.put(`api/posts/${postId}`, postData);
     console.log("[EDITED POST]", res.data);
   }
 }
