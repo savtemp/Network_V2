@@ -9,13 +9,15 @@ class PostsService {
   async getAll() {
     const res = await api.get(`api/posts`);
     console.log("[POSTS]", res.data);
-    AppState.posts = res.data
+    AppState.posts = res.data.posts;
+    AppState.previousPage = res.data.newer;
+    AppState.nextPage = res.data.older;
   }
 
   async create(postData) {
     const res = await api.post(`api/posts`, postData);
     console.log("[CREATED POST]", res.data);
-    AppState.posts.posts.unshift(res.data)
+    AppState.posts.unshift(res.data);
   }
 
   async createLike(postId) {
@@ -25,10 +27,10 @@ class PostsService {
 
   // FIXME this is deleting the post but also hiding all the other posts on delete
   async delete(postId) {
-    // debugger
+    // debugger;
     const res = await api.delete(`api/posts/${postId}`);
     console.log("[DELETING POST]", res.data);
-    AppState.posts = AppState.posts.posts.filter(p => p.id != postId)
+    AppState.posts = AppState.posts.filter((p) => p.id != postId);
   }
 
   // TODO come back to this - it was not a requirement for the project

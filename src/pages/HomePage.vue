@@ -41,7 +41,7 @@ export default {
       }
     }
     return {
-      posts: computed(() => AppState.posts.posts),
+      posts: computed(() => AppState.posts),
       profile: computed(() => AppState.account)
     };
   },
