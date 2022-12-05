@@ -1,6 +1,6 @@
 <template>
 
-  <div class="my-3 card">
+  <div class="my-3 card dork">
     <div class="div">
       <span class="mx-2">{{ post.creator.name }}</span> <br>
       <span>{{ post.createdAt }}</span> <br>
@@ -57,11 +57,11 @@ export default {
         }
       },
 
-      async deletePost(postId){
+      async deletePost(postId) {
         try {
           // console.log(props.post.id)
           const yes = await Pop.confirm("Do you want to delete this post?")
-          if(!yes){return}
+          if (!yes) { return }
           await postsService.delete(postId)
         } catch (error) {
           logger.error('[DELETING POST]', error)
@@ -78,13 +78,20 @@ export default {
 
 <style>
 .avatar {
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
+  object-fit: cover
 }
 
 .postImg {
   height: 45VH;
   width: 100%;
+  object-fit: cover;
+}
+
+.dork {
+  background-color: #252526;
+  color: rgb(243, 240, 238);
 }
 </style>

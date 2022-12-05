@@ -1,11 +1,12 @@
 <template>
-  <div>
-    <img class="avatar" :src="profile.picture" alt="">
+  <div class="mb-2 mx-2">
+    <img class="postFormAvatar" :src="profile.picture" alt="">
   </div>
   <form action="" @submit.prevent="handleSubmit">
-    <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Share whats happening" v-model="editable.body"></textarea>
+    <textarea class="form-control" name="body" id="" cols="30" rows="10" :placeholder='phrase'
+      v-model="editable.body"></textarea>
     <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
-    <button class="btn btn-primary" type="submit">
+    <button class="btn btn-primary mt-2" type="submit">
       <i class="mdi mdi-send"><span>Post</span></i>
     </button>
   </form>
@@ -20,15 +21,17 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 
 export default {
-  setup(){
+  setup() {
     const editable = ref({})
+    const phrase = ("                " + "Share what's happening" + " " + AppState.account.name)
 
 
-    return{
+    return {
       profile: computed(() => AppState.account),
+      phrase,
       editable,
 
-      async handleSubmit(){
+      async handleSubmit() {
         try {
           await postsService.create(editable.value)
           editable.value = {}
@@ -45,4 +48,24 @@ export default {
 
 
 <style lang="scss" scoped>
+textarea {
+  background-color: #252526;
+  border: none;
+}
+
+.postFormAvatar {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  top: 70px;
+  position: relative;
+}
+
+input {
+  background-color: #252526;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border: none;
+}
 </style>

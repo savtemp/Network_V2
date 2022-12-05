@@ -1,13 +1,13 @@
 <template>
 
-  <div class="row justify-content-center">
-    <div class="col-4 justify-content-center">
+  <div class="row justify-content-center mt-3">
+    <div class="col-5 justify-content-center">
       <PostForm v-if="profile.id" />
     </div>
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-4 justify-content-center">
+    <div class="col-5 justify-content-center">
       <div class="row text-center" v-for="p in posts" :key="p.id">
         <PostCard :post="p" />
       </div>
