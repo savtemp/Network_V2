@@ -1,6 +1,6 @@
 <template>
 
-  <div class="my-3 card dork">
+  <div class="my-3 card dork p-0">
     <div class="div">
       <span class="mx-2">{{ post.creator.name }}</span> <br>
       <span>{{ post.createdAt }}</span> <br>

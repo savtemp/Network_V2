@@ -1,15 +1,22 @@
 <template>
-  <div class="mb-2 mx-2">
-    <img class="postFormAvatar" :src="profile.picture" alt="">
+
+  <div class="bg-white rounded d-flex p-0">
+    <div class="col-2 p-2">
+      <img class="postFormAvatar" :src="profile.picture" alt="">
+    </div>
+    <form class="col-10" action="" @submit.prevent="handleSubmit">
+        <textarea class="form-control" name="body" id="" cols="30" rows="10" :placeholder='phrase'
+          v-model="editable.body"></textarea>
+        <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
+        <div class="text-end">
+          <button class="btn btn-primary mt-2" type="submit">
+            <i class="mdi mdi-send"><span>Post</span></i>
+          </button>
+        </div>
+    </form>
   </div>
-  <form action="" @submit.prevent="handleSubmit">
-    <textarea class="form-control" name="body" id="" cols="30" rows="10" :placeholder='phrase'
-      v-model="editable.body"></textarea>
-    <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
-    <button class="btn btn-primary mt-2" type="submit">
-      <i class="mdi mdi-send"><span>Post</span></i>
-    </button>
-  </form>
+
+
 </template>
 
 
@@ -49,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 textarea {
-  background-color: #252526;
+  // background-color: #252526;
   border: none;
 }
 
@@ -59,11 +66,11 @@ textarea {
   width: 60px;
   object-fit: cover;
   top: 70px;
-  position: relative;
+  // position: relative;
 }
 
 input {
-  background-color: #252526;
+  // background-color: #252526;
   margin-top: 2px;
   margin-bottom: 2px;
   border: none;
