@@ -2,14 +2,14 @@
 
   <div class="row justify-content-center">
 
-    <div class="col-10 justify-content-center bg-grey p-0 rounded">
+    <div class="col-9 justify-content-center bgProfile text-light p-0 rounded my-4">
       <img class="img-fluid" :src="profile.coverImg" alt="">
       <div class="d-flex justify-content-between">
-        <div>
+        <div class="px-3">
           <img class="movement" :src="profile.picture" alt="">
         </div>
         <div>
-          <a v-if="profile.github" :href="profile.github"> <img class="icon"
+          <a v-if="profile.github" :href="profile.github"> <img class="icon mx-2"
               src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" srcset=""></a>
           <a v-if="profile.linkedin" :href="profile.linkedin"> <img class="icon mx-2"
               src="https://openvisualfx.com/wp-content/uploads/2019/10/linkedin-icon-logo-png-transparent.png" alt=""
@@ -19,43 +19,30 @@
         </div>
       </div>
 
-      <div>
-        <p>{{profile.class}}</p>
-        <p>{{profile.name}}</p>
-        <p>{{profile.bio}}</p>
+      <div class="p-3">
+        <p class="m-0">{{profile.class}}</p>
+        <p class="fs-3">{{profile.name}}</p>
+        <p class="m-0">{{profile.bio}}</p>
       </div>
 
-      <div class="text-end">
+      <div class="text-end p-2">
         <button class="btn btn-warning">Edit</button>
       </div>
     </div>
 
-    <div class="col-10 justify-content-center">
-      <PostForm v-if="profile.id == account.id" />
+    <div class="col-9 justify-content-center">
+      <div class="row">
+        <PostForm v-if="profile.id == account.id" />
+      </div>
     </div>
     
-    <div class="col-10 justify-content-center">
+    <div class="col-9 justify-content-center">
       <div class="row text-center" v-for="p in posts" :key="p.id">
         <PostCard :post="p" />
       </div>
     </div>
   
   </div>
-
-
-
-
-
-  <!-- <h1>{{ profile.name }}</h1>
-  <p>{{ profile.bio }}</p>
-  <p>Class: {{ profile.class }}</p>
-  <span>Has Graduated: {{ profile.graduated }}</span> <br>
-  <span>Github: {{ profile.github }}</span> <br>
-  <span>LinkedIn: {{ profile.linkedin }}</span> <br>
-  <span>Resume: {{ profile.resume }}</span> <br>
-  <span>Email: {{ profile.email }}</span> <br> -->
-
-
 </template>
 
 <script>
@@ -111,7 +98,7 @@ export default {
 .coverImg {
   height: 25VH;
   width: 100%;
-  /* object-fit: cover; */
+  object-fit: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -133,8 +120,8 @@ export default {
   object-fit: cover;
 }
 
-/* .bgProfile {
+.bgProfile {
   background: rgb(37, 37, 38);
   background: linear-gradient(360deg, rgba(37, 37, 38, 1) 36%, rgba(62, 62, 62, 1) 64%, rgba(196, 196, 196, 1) 100%);
-} */
+}
 </style>

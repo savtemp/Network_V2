@@ -4,13 +4,13 @@
     <div class="col-2 p-2">
       <img class="postFormAvatar" :src="profile.picture" alt="">
     </div>
-    <form class="col-10" action="" @submit.prevent="handleSubmit">
-        <textarea class="form-control" name="body" id="" cols="30" rows="10" :placeholder='phrase'
+    <form class="col-9 py-2" action="" @submit.prevent="handleSubmit">
+        <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Share your thoughts..."
           v-model="editable.body"></textarea>
         <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
         <div class="text-end">
           <button class="btn btn-primary mt-2" type="submit">
-            <i class="mdi mdi-send"><span>Post</span></i>
+            <i class="mdi mdi-send"> <span>Post</span></i>
           </button>
         </div>
     </form>
@@ -57,7 +57,7 @@ export default {
 <style lang="scss" scoped>
 textarea {
   // background-color: #252526;
-  border: none;
+  border: dashed black;
 }
 
 .postFormAvatar {
@@ -74,5 +74,6 @@ input {
   margin-top: 2px;
   margin-bottom: 2px;
   border: none;
+  border: dashed black;
 }
 </style>

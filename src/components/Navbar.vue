@@ -6,6 +6,11 @@
           src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
       </div>
     </router-link>
+    <!-- SEARCH BAR -->
+    <div class="d-flex">
+      <input class="form-control" type="text" placeholder="Search...">
+      <button class="btn btn-light"> <i class="mdi mdi-magnify"></i> </button>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

@@ -1,18 +1,27 @@
 <template>
 
+  
   <div class="my-3 card dork p-0">
-    <div class="div">
-      <span class="mx-2">{{ post.creator.name }}</span> <br>
-      <span>{{ post.createdAt }}</span> <br>
-      <img @click="profilePush()" class="avatar" :src=post.creator.picture alt="Profile Picture"
+    <div class="d-flex">
+      <div class="p-3">
+        <img @click="profilePush()" class="avatar" :src=post.creator.picture alt="Profile Picture"
         :title="post.creator.name">
+      </div>
+      <div class="col-4 p-3 mt-2">
+        <p class="text-start m-0">{{ post.creator.name }}</p>
+        <p class="text-start m-0">{{ new Date(post.createdAt).toLocaleTimeString('en-US') }}</p>
+      </div>
+      <div class="text-end col-6 p-3" v-if="post.creator.id == account.id">
+        <button class="btn btn-danger" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i> </button>
+      </div>
     </div>
-    <div v-if="post.creator.id == account.id">
-      <button class="btn btn-danger" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i> </button>
+  
+    <div>
+      <p class="text-start px-3">{{ post.body }}</p>
+      <img class="postImg" :src=post.imgUrl alt="">
     </div>
-    <p>{{ post.body }}</p>
-    <img class="postImg" :src=post.imgUrl alt="">
-    <div class="div">
+
+    <div class="text-end p-3">
       <i class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
     </div>
 
@@ -85,7 +94,7 @@ export default {
 }
 
 .postImg {
-  height: 45VH;
+  height: 60VH;
   width: 100%;
   object-fit: cover;
 }
