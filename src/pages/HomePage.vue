@@ -49,20 +49,9 @@ export default {
       }
     }
 
-    // async function getAds(){
-    //   try {
-    //     await adsService.getAds()
-    //   } catch (error) {
-    //     logger.log('[GETTING ADS]', error)
-    //     Pop.error(error)
-    //   }
-    // }
-
-
     return {
       posts: computed(() => AppState.posts),
       profile: computed(() => AppState.account),
-      // ads: computed(() => AppState.ads)
     };
   },
   components: { PostCard, PostForm }

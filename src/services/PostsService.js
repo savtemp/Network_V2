@@ -20,9 +20,12 @@ class PostsService {
     AppState.posts.unshift(res.data);
   }
 
+  // TODO find the post by the index then splice it out to make the change then add it back in
   async createLike(postId) {
     const res = await api.post(`api/posts/${postId}/like`);
     console.log("[CREATED LIKE]", res.data);
+    // let foundPost = 
+    AppState.createLike = res.data 
   }
 
   // FIXME this is deleting the post but also hiding all the other posts on delete
@@ -37,6 +40,13 @@ class PostsService {
   async edit(postId, postData) {
     const res = await api.put(`api/posts/${postId}`, postData);
     console.log("[EDITED POST]", res.data);
+  }
+
+  async queryOnSearchPage(searchTerm){
+    const res = await api.get(`api/posts`, {
+    params: {query: searchTerm}
+    })
+    AppState.posts = res.data.posts
   }
 }
 

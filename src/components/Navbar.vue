@@ -7,9 +7,8 @@
       </div>
     </router-link>
     <!-- SEARCH BAR -->
-    <div class="d-flex">
-      <input class="form-control" type="text" placeholder="Search...">
-      <button class="btn btn-light"> <i class="mdi mdi-magnify"></i> </button>
+    <div class="col-3">
+      <SearchBar />
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,11 +30,12 @@
 
 <script>
 import Login from './Login.vue'
+import SearchBar from './SearchBar.vue';
 export default {
   setup() {
     return {}
   },
-  components: { Login }
+  components: { Login, SearchBar }
 }
 </script>
 

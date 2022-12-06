@@ -21,7 +21,7 @@
       <img class="postImg" :src=post.imgUrl alt="">
     </div>
 
-    <div class="text-end p-3">
+    <div class="text-end p-3" @click="likePost(post.id)">
       <i class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
     </div>
 
@@ -33,7 +33,7 @@
 import { computed } from "@vue/reactivity";
 import { useRoute, useRouter } from "vue-router";
 import { AppState } from "../AppState";
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { router } from "../router";
 import { postsService } from "../services/PostsService.js";
 import { logger } from "../utils/Logger.js";
@@ -50,6 +50,10 @@ export default {
     const router = useRouter()
 
     const deleting = ref(false)
+
+    // watchEffect(() => {
+    
+    // })
 
     return {
       deleting,
@@ -74,6 +78,15 @@ export default {
           await postsService.delete(postId)
         } catch (error) {
           logger.error('[DELETING POST]', error)
+          Pop.error(error)
+        }
+      },
+
+      async likePost(postId){
+        try {
+          await postsService.createLike(postId)
+        } catch (error) {
+          logger.log('[LIKING POST]', error)
           Pop.error(error)
         }
       }
