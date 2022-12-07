@@ -7,8 +7,13 @@ export const AppState = reactive({
   account: {},
   posts: [],
   activeProfile: {},
-  profilePost: [],
+  profilePosts: [],
   ads: [],
 
-  url: ''
+  url: '',
+
+  newerPage: null,
+  olderPage: null,
+  page: '',
+  totalPages: ''
 });

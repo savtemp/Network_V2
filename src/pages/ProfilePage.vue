@@ -35,6 +35,13 @@
         <PostForm v-if="profile.id == account.id" />
       </div>
     </div>
+
+    <!-- FIXME this still shows home page URL page numbers, change to show profile posts -->
+    <div class="col-9 justify-content-center my-2">
+      <div class="row">
+        <PageNav />
+      </div>
+    </div>
     
     <div class="col-9 justify-content-center">
       <div class="row text-center" v-for="p in posts" :key="p.id">
@@ -50,6 +57,7 @@ import { computed } from "@vue/reactivity"
 import { onMounted } from "vue"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
+import PageNav from "../components/PageNav.vue"
 import PostForm from "../components/PostForm.vue"
 import { profileService } from "../services/ProfileService"
 import Pop from "../utils/Pop"
@@ -90,7 +98,7 @@ export default {
       posts: computed(() => AppState.profilePost)
     };
   },
-  components: { PostForm }
+  components: { PostForm, PageNav }
 }
 </script>
 

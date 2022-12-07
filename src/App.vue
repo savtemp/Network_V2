@@ -5,7 +5,7 @@
     <!-- SECTION Profile Card -->
     <section class="bg-white rounded h-75">
       <div class="text-center p-3">
-        <img class="profile-card-img text-center" :src="profile.picture" alt="">
+        <img @click="profilePush()" class="profile-card-img text-center" :src="profile.picture" alt="">
       </div>
       <div class="mx-4">
         <p class="m-0">{{profile.class}}</p>
@@ -62,7 +62,9 @@ import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import AdCard from './components/AdCard.vue'
 import Navbar from './components/Navbar.vue'
+import { router } from './router.js'
 import { adsService } from './services/AdsService.js'
+import Pop from './utils/Pop.js'
 
 export default {
   setup() {
@@ -83,7 +85,17 @@ export default {
     return {
       appState: computed(() => AppState),
       profile: computed(() => AppState.account),
-      ads: computed(() => AppState.ads)
+      ads: computed(() => AppState.ads),
+
+      profilePush(){
+        try {
+          router.push({name: 'Profile', params: {id: this.profile.id}})
+        } catch (error) {
+          console.error(error)
+         // @ts-ignore 
+          Pop.error(('[ERROR]'), error.message)
+        }
+      }
     }
   },
   components: { Navbar, AdCard }

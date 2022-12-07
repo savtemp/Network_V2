@@ -3,15 +3,18 @@ import { Post } from "../models/Post.js";
 import { api } from "./AxiosService";
 
 class PostsService {
+
   async getById(postId) {
     const res = await api.get(`api/posts/${postId}`);
   }
+
   async getAll() {
     const res = await api.get(`api/posts`);
     console.log("[POSTS]", res.data);
+    
     AppState.posts = res.data.posts;
-    AppState.previousPage = res.data.newer;
-    AppState.nextPage = res.data.older;
+    AppState.olderPage = res.data.older
+    AppState.newerPage = res.data.newer
   }
 
   async create(postData) {
@@ -20,33 +23,47 @@ class PostsService {
     AppState.posts.unshift(res.data);
   }
 
-  // TODO find the post by the index then splice it out to make the change then add it back in
   async createLike(postId) {
-    const res = await api.post(`api/posts/${postId}/like`);
+    let createdLike = AppState.posts.find(p => p.id == postId)
+    let likeIndex = AppState.posts.indexOf(createdLike)
+    
+    const res = await api.post(`api/posts/${postId}/like`, createdLike);
     console.log("[CREATED LIKE]", res.data);
-    // let foundPost = 
-    AppState.createLike = res.data 
+    let likedPost = new Post(res.data)
+
+    AppState.posts.splice(likeIndex, 1, likedPost)
   }
 
-  // FIXME this is deleting the post but also hiding all the other posts on delete
   async delete(postId) {
-    // debugger;
     const res = await api.delete(`api/posts/${postId}`);
     console.log("[DELETING POST]", res.data);
     AppState.posts = AppState.posts.filter((p) => p.id != postId);
   }
 
   // TODO come back to this - it was not a requirement for the project
-  async edit(postId, postData) {
-    const res = await api.put(`api/posts/${postId}`, postData);
-    console.log("[EDITED POST]", res.data);
-  }
+  // async edit(postId, postData) {
+  //   const res = await api.put(`api/posts/${postId}`, postData);
+  //   console.log("[EDITED POST]", res.data);
+  // }
 
   async queryOnSearchPage(searchTerm){
     const res = await api.get(`api/posts`, {
     params: {query: searchTerm}
     })
     AppState.posts = res.data.posts
+  }
+
+  async changePage(url){
+    console.log("url", url)
+    const res = await api.get(url)
+
+    AppState.posts = res.data.posts
+    // AppState.profilePosts = res.data.posts
+    AppState.olderPage = res.data.older
+    AppState.newerPage = res.data.newer
+
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
 }
 

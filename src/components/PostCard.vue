@@ -21,8 +21,11 @@
       <img class="postImg" :src=post.imgUrl alt="">
     </div>
 
-    <div class="text-end p-3" @click="likePost(post.id)">
-      <i class="mdi mdi-heart-outline"> {{ post.likes.length }}</i>
+    <!-- TODO change to if liked then full heart MDI -->
+    <div class="text-end p-3 fs-5" @click="likePost(post.id)">
+      <i class="mdi mdi-heart-outline"> 
+        <span class="p-2">{{ post.likes.length }}</span>
+      </i>
     </div>
 
   </div>

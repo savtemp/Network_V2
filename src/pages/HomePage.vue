@@ -2,12 +2,19 @@
 
 <div class="row justify-content-center">
 
+  
   <div class="col-10 justify-content-center my-3">
     <div class="row">
       <PostForm v-if="profile.id" />
     </div>
   </div>
   
+  <div class="col-10 justify-content-center my-2">
+    <div class="row">
+      <PageNav />
+    </div>
+  </div>
+
   <div class="col-10 justify-content-center">
     <div class="row text-center" v-for="p in posts" :key="p.id">
       <PostCard :post="p" />
@@ -30,6 +37,7 @@ import PostCard from "../components/PostCard.vue"
 import Pop from "../utils/Pop.js"
 import PostForm from "../components/PostForm.vue"
 import { logger } from "../utils/Logger.js"
+import PageNav from "../components/PageNav.vue"
 
 
 export default {
@@ -54,7 +62,7 @@ export default {
       profile: computed(() => AppState.account),
     };
   },
-  components: { PostCard, PostForm }
+  components: { PostCard, PostForm, PageNav }
 }
 </script>
 
