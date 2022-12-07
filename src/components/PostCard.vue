@@ -1,22 +1,22 @@
 <template>
 
   
-  <div class="my-3 card dork p-0">
+  <div class="my-3 dork rounded elevation-4 p-0">
     <div class="d-flex">
-      <div class="p-3">
+      <div class="col-2 p-2 mt-2">
         <img @click="profilePush()" class="avatar" :src=post.creator.picture alt="Profile Picture"
         :title="post.creator.name">
       </div>
-      <div class="col-4 p-3 mt-2">
+      <div class="col-4 mt-4">
         <p class="text-start m-0">{{ post.creator.name }}</p>
         <p class="text-start m-0">{{ new Date(post.createdAt).toLocaleTimeString('en-US') }}</p>
       </div>
-      <div class="text-end col-6 p-3" v-if="post.creator.id == account.id">
-        <button class="btn btn-danger" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i> </button>
+      <div class="text-end col-6 p-2 ml-3" v-if="post.creator.id == account.id">
+        <button class="btn btn-outline-light" @click="deletePost(post.id)"> <i class="mdi mdi-delete"></i> </button>
       </div>
     </div>
   
-    <div>
+    <div class="my-2">
       <p class="text-start px-3">{{ post.body }}</p>
       <img class="postImg" :src=post.imgUrl alt="">
     </div>
@@ -106,7 +106,8 @@ export default {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  object-fit: cover
+  object-fit: cover;
+  border: 3px solid #bb2fef;
 }
 
 .postImg {
@@ -116,7 +117,7 @@ export default {
 }
 
 .dork {
-  background-color: #252526;
-  color: rgb(243, 240, 238);
+  background-color: #74587e;
+  color: white;
 }
 </style>

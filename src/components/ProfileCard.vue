@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded d-flex my-3 dork">
+  <div class="elevation-4 rounded d-flex my-3 dork">
     <div class="p-3">
       <img @click="profilePush()" class="avatar" :src="post.creator.picture" alt="" :title="post.creator.name">
     </div>

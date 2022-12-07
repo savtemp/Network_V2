@@ -1,16 +1,16 @@
 <template>
 
-  <div class="bg-white rounded d-flex p-0">
+  <div class="bg-white elevation-4 rounded d-flex p-0">
     <div class="col-2 p-2">
       <img class="postFormAvatar" :src="profile.picture" alt="">
     </div>
     <form class="col-9 py-2" action="" @submit.prevent="handleSubmit">
-        <textarea class="form-control" name="body" id="" cols="30" rows="10" placeholder="Share your thoughts..."
+        <textarea class="form-control" style="resize: none" name="body" id="" cols="30" rows="5" placeholder="Share your thoughts..."
           v-model="editable.body"></textarea>
         <input class="form-control" type="url" placeholder="Add a photo or video" v-model="editable.imgUrl">
         <div class="text-end">
-          <button class="btn btn-primary mt-2" type="submit">
-            <i class="mdi mdi-send"> <span>Post</span></i>
+          <button class="btn btn-outline-dark mt-2" type="submit">
+            <i class="mdi mdi-send"> <span> Post</span></i>
           </button>
         </div>
     </form>
@@ -57,7 +57,7 @@ export default {
 <style lang="scss" scoped>
 textarea {
   // background-color: #252526;
-  border: dashed black;
+  border: dashed #74587e;
 }
 
 .postFormAvatar {
@@ -66,6 +66,7 @@ textarea {
   width: 60px;
   object-fit: cover;
   top: 70px;
+  border: 3px solid #bb2fef;
   // position: relative;
 }
 
@@ -74,6 +75,6 @@ input {
   margin-top: 2px;
   margin-bottom: 2px;
   border: none;
-  border: dashed black;
+  border: dashed #74587e;
 }
 </style>

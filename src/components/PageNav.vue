@@ -2,18 +2,18 @@
   <div class="d-flex justify-content-center">
     
     <div class="p-2">
-      <button @click="changePage(newerPage)" :disabled="!newerPage" class="btn btn-outline-light text-light">
+      <button @click="changePage(newerPage)" :disabled="!newerPage" class="btn btn-outline-dark">
         <i class="mdi mdi-arrow-left"></i>
         <span> Newer</span>
       </button>
     </div>
 
     <div class="p-2">
-      <p class="text-light">pages: {{page}}</p>
+      <p class="m-0 pt-1">pages: {{page}}</p>
     </div>
 
     <div class="p-2">
-      <button @click="changePage(olderPage)" class="btn btn-outline-light text-light">
+      <button @click="changePage(olderPage)" class="btn btn-outline-dark">
         <span>Older </span>
         <i class="mdi mdi-arrow-right"></i>
       </button>
@@ -28,7 +28,7 @@ import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { postsService } from '../services/PostsService.js';
-import { profileService } from '../services/ProfileService.js';
+// import { profileService } from '../services/ProfileService.js';
 export default {
   setup(){
   return {

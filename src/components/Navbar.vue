@@ -3,7 +3,7 @@
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-end">
         <img class="logo" alt="logo"
-          src="https://www.designfreelogoonline.com/wp-content/uploads/2017/10/000899-eagle-01.png" />
+          src="../assets/img/dogRunning.gif"  :title="Home"/>
       </div>
     </router-link>
     <!-- SEARCH BAR -->
@@ -61,7 +61,7 @@ a:hover {
 }
 
 .dork {
-  background-color: #252526;
+  background-color: #74587e;
 }
 
 .avatar {
@@ -70,7 +70,7 @@ a:hover {
 
 .logo {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
 }
 </style>

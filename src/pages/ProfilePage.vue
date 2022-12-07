@@ -1,55 +1,59 @@
 <template>
 
-  <div class="row justify-content-center">
-
-    <div class="col-9 justify-content-center bgProfile text-light p-0 rounded my-4">
-      <img class="img-fluid" :src="profile.coverImg" alt="">
-      <div class="d-flex justify-content-between">
-        <div class="px-3">
-          <img class="movement" :src="profile.picture" alt="">
-        </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      
+      <div class="col-10 justify-content-center bg-white text-dark p-0 rounded elevation-4 my-4">
         <div>
-          <a v-if="profile.github" :href="profile.github"> <img class="icon mx-2"
-              src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" srcset=""></a>
-          <a v-if="profile.linkedin" :href="profile.linkedin"> <img class="icon mx-2"
-              src="https://openvisualfx.com/wp-content/uploads/2019/10/linkedin-icon-logo-png-transparent.png" alt=""
-              srcset=""></a>
-          <a v-if="profile.resume" :href="profile.resume"> <img class="icon mx-2"
-              src="https://www.freeiconspng.com/thumbs/resume-icon-png/resume-icon-png-15.png" alt="" srcset=""></a>
+          <img class="img-fluid cover-img" :src="profile.coverImg" alt="">
         </div>
-      </div>
-
-      <div class="p-3">
-        <p class="m-0">{{profile.class}}</p>
-        <p class="fs-3">{{profile.name}}</p>
-        <p class="m-0">{{profile.bio}}</p>
-      </div>
-
-      <div class="text-end p-2">
-        <button class="btn btn-warning">Edit</button>
+        <div class="d-flex justify-content-between">
+          <div class="px-3">
+            <img class="movement" :src="profile.picture" alt="">
+          </div>
+          <div>
+            <a v-if="profile.github" :href="profile.github"> <img class="icon mx-2"
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" srcset=""></a>
+              <a v-if="profile.linkedin" :href="profile.linkedin"> <img class="icon mx-2"
+                src="https://openvisualfx.com/wp-content/uploads/2019/10/linkedin-icon-logo-png-transparent.png" alt=""
+                srcset=""></a>
+                <a v-if="profile.resume" :href="profile.resume"> <img class="icon mx-2"
+                  src="https://www.freeiconspng.com/thumbs/resume-icon-png/resume-icon-png-15.png" alt="" srcset=""></a>
+                </div>
+              </div>
+              
+              <div class="p-3">
+                <p class="m-0">{{profile.class}}</p>
+                <p class="fs-3">{{profile.name}}</p>
+                <p class="m-0">{{profile.bio}}</p>
+              </div>
+              
+              <div class="text-end p-2" v-if="profile.id == account.id">
+                <button class="btn purple-btn">Edit</button>
+              </div>
+            </div>
+            
+            <div class="col-10 justify-content-center">
+              <div class="row">
+                <PostForm v-if="profile.id == account.id" />
+              </div>
+            </div>
+            
+            <!-- FIXME this still shows home page URL page numbers, change to show profile posts -->
+            <div class="col-10 justify-content-center my-2">
+              <div class="row">
+                <PageNav />
+              </div>
+            </div>
+            
+            <div class="col-10 justify-content-center">
+              <div class="row text-center" v-for="p in posts" :key="p.id">
+                <PostCard :post="p" />
+              </div>
+            </div>
+            
       </div>
     </div>
-
-    <div class="col-9 justify-content-center">
-      <div class="row">
-        <PostForm v-if="profile.id == account.id" />
-      </div>
-    </div>
-
-    <!-- FIXME this still shows home page URL page numbers, change to show profile posts -->
-    <div class="col-9 justify-content-center my-2">
-      <div class="row">
-        <PageNav />
-      </div>
-    </div>
-    
-    <div class="col-9 justify-content-center">
-      <div class="row text-center" v-for="p in posts" :key="p.id">
-        <PostCard :post="p" />
-      </div>
-    </div>
-  
-  </div>
 </template>
 
 <script>
@@ -70,6 +74,7 @@ export default {
       getPosts();
       getProfile();
     });
+    
     async function getPosts() {
       try {
         console.log(route.params.id);
@@ -104,9 +109,9 @@ export default {
 
 <style scoped>
 .coverImg {
-  height: 25VH;
-  width: 100%;
-  object-fit: cover;
+  /* height: 25VH; */
+  /* height: 200px;
+  width: 200px; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -114,22 +119,22 @@ export default {
 
 .movement {
   top: -40px;
-  position: relative;
+  /* position: relative; */
   border-radius: 50%;
   height: 200px;
   width: 200px;
   object-fit: cover;
-  border: 5px solid #252526;
+  border: 3px solid #bb2fef;
 }
 
 .icon {
   height: 40px;
   width: 40px;
-  object-fit: cover;
+  /* object-fit: cover; */
 }
 
-.bgProfile {
-  background: rgb(37, 37, 38);
-  background: linear-gradient(360deg, rgba(37, 37, 38, 1) 36%, rgba(62, 62, 62, 1) 64%, rgba(196, 196, 196, 1) 100%);
+.purple-btn{
+  background-color: #74587e;
+  color: white;
 }
 </style>

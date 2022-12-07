@@ -1,7 +1,7 @@
 <template>
 
-    <div class=''>
-      <AccountForm />
+    <div class='container-fluid'>
+        <AccountForm />
     </div>
 
 </template>

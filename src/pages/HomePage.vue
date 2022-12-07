@@ -1,31 +1,31 @@
 <template>
 
-<div class="row justify-content-center">
+  <div class="container-fluid">
 
-  
-  <div class="col-10 justify-content-center my-3">
-    <div class="row">
-      <PostForm v-if="profile.id" />
+    
+    <div class="row justify-content-center">
+      
+      
+      <div class="col-10 justify-content-center my-3">
+        <div class="row">
+          <PostForm v-if="profile.id" />
+        </div>
+      </div>
+      
+      <div class="col-10 justify-content-center my-2">
+        <div class="row">
+          <PageNav />
+        </div>
+      </div>
+      
+      <div class="col-10 justify-content-center">
+        <div class="row text-center" v-for="p in posts" :key="p.id">
+          <PostCard :post="p" />
+        </div>
+      </div>
+      
     </div>
   </div>
-  
-  <div class="col-10 justify-content-center my-2">
-    <div class="row">
-      <PageNav />
-    </div>
-  </div>
-
-  <div class="col-10 justify-content-center">
-    <div class="row text-center" v-for="p in posts" :key="p.id">
-      <PostCard :post="p" />
-    </div>
-  </div>
-  
-</div>
-
-
-
-
 </template>
 
 <script>

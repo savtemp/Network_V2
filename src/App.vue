@@ -3,7 +3,7 @@
   <div class="d-flex overflow">
 
     <!-- SECTION Profile Card -->
-    <section class="bg-white rounded h-75">
+    <section class="bg-white elevation-4 rounded h-75">
       <div class="text-center p-3">
         <img @click="profilePush()" class="profile-card-img text-center" :src="profile.picture" alt="">
       </div>
@@ -115,9 +115,9 @@ footer {
   height: 32px;
 }
 
-body {
-  background-color: #18191a !important;
-}
+// body {
+//   background-color: #18191a !important;
+// }
 
 .overflow{
   overflow-x: hidden;
@@ -128,7 +128,8 @@ body {
   height: 200px;
   width: 200px;
   object-fit: cover;
-  border: 5px solid #252526;
+  border: 5px solid #bb2fef;
+  background-color: #74587e;
 }
 
 .icon {

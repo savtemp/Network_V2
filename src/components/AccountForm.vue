@@ -1,7 +1,7 @@
 <template>
 
-  <div class="row m-5 text-light">
-    <form @submit.prevent="handleSubmit(account.id)">
+  <div class="row m-5 card">
+    <form @submit.prevent="handleSubmit(account.id)" class="my-3">
 
 
       <div class="mb-3">
@@ -82,6 +82,7 @@
 import { computed } from "@vue/reactivity";
 import { ref, watchEffect } from "vue";
 import { AppState } from "../AppState";
+import { router } from "../router.js";
 import { accountService } from "../services/AccountService";
 import Pop from "../utils/Pop";
 
@@ -108,6 +109,7 @@ export default {
           editable.value.id = accountId
           console.log('[ACCOUNT BODY]', editable.value);
           await accountService.edit(editable.value)
+          router.push({name: 'Profile', params: {id: accountId}})
         } catch (error) {
           console.error(error)
           // @ts-ignore 

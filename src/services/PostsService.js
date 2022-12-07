@@ -53,12 +53,13 @@ class PostsService {
     AppState.posts = res.data.posts
   }
 
+   // FIXME Will not change pages on profile page, will show the correct page number on a profile, but will keep that number of pages when navigating back to the home page
   async changePage(url){
     console.log("url", url)
     const res = await api.get(url)
 
     AppState.posts = res.data.posts
-    // AppState.profilePosts = res.data.posts
+    AppState.profilePosts = res.data.posts
     AppState.olderPage = res.data.older
     AppState.newerPage = res.data.newer
 

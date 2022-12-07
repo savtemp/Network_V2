@@ -3,7 +3,7 @@
 
     <!-- SECTION Searched Profiles -->
     <div class="row justify-content-center">
-      <p class="fs-3 text-light">Profiles:</p>
+      <p class="fs-3 mx-3">Profiles:</p>
       <div class="col-10 justify-content-center">
         <div class="row text-center" v-for="p in posts" :key="p.id">
           <ProfileCard :post="p" /> 
@@ -13,7 +13,7 @@
     
     <!-- SECTION Searched Posts -->
     <div class="row justify-content-center">
-      <p class="fs-3 text-light">Posts:</p>
+      <p class="fs-3 mx-3">Posts:</p>
       <div class="col-10 justify-content-center">
         <div class="row text-center" v-for="p in posts" :key="p.id">
           <PostCard :post="p" />

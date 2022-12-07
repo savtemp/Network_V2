@@ -55,6 +55,6 @@ export default {
 }
 
 .dork {
-  background-color: #252526;
+  background-color: #74587e;
 }
 </style>
