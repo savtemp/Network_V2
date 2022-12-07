@@ -1,6 +1,6 @@
 <template>
 
-  <div class="container-fluid">
+  <div class="container-fluid" v-if="profile">
     <div class="row justify-content-center">
       
       <div class="col-10 justify-content-center bg-white text-dark p-0 rounded elevation-4 my-4">
@@ -53,12 +53,12 @@
             </div>
             
       </div>
-    </div>
+  </div>
 </template>
 
 <script>
 import { computed } from "@vue/reactivity"
-import { onMounted } from "vue"
+import { onMounted, watchEffect } from "vue"
 import { useRoute } from "vue-router"
 import { AppState } from "../AppState"
 import PageNav from "../components/PageNav.vue"
@@ -70,10 +70,15 @@ import Pop from "../utils/Pop"
 export default {
   setup() {
     const route = useRoute();
-    onMounted(() => {
-      getPosts();
-      getProfile();
-    });
+
+
+    watchEffect(() => {
+      if(route.params.id){
+        profileService.clearAppState()
+        getProfile()
+        getPosts()
+      }
+    })
     
     async function getPosts() {
       try {
@@ -100,7 +105,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.activeProfile),
-      posts: computed(() => AppState.profilePost)
+      posts: computed(() => AppState.profilePosts)
     };
   },
   components: { PostForm, PageNav }

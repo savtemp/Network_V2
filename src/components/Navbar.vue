@@ -3,7 +3,7 @@
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-end">
         <img class="logo" alt="logo"
-          src="../assets/img/dogRunning.gif"  :title="Home"/>
+          src="../assets/img/dogRunning.gif"  title="Home"/>
       </div>
     </router-link>
     <!-- SEARCH BAR -->

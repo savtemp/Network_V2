@@ -15,6 +15,9 @@ class PostsService {
     AppState.posts = res.data.posts;
     AppState.olderPage = res.data.older
     AppState.newerPage = res.data.newer
+
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
 
   async create(postData) {
@@ -24,11 +27,11 @@ class PostsService {
   }
 
   async createLike(postId) {
-    let createdLike = AppState.posts.find(p => p.id == postId)
-    let likeIndex = AppState.posts.indexOf(createdLike)
+    // let createdLike = AppState.posts.find(p => p.id == postId)
     
-    const res = await api.post(`api/posts/${postId}/like`, createdLike);
+    const res = await api.post(`api/posts/${postId}/like`);
     console.log("[CREATED LIKE]", res.data);
+    let likeIndex = AppState.posts.findIndex(p => p.id == postId)
     let likedPost = new Post(res.data)
 
     AppState.posts.splice(likeIndex, 1, likedPost)

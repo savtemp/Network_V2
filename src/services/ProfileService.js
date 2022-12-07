@@ -13,12 +13,17 @@ class ProfileService {
     let res = await api.get(`api/profiles/${id}/posts`);
     console.log("[PROFILE POSTS]", res.data.posts);
   
-    AppState.profilePost = res.data.posts;
+    AppState.profilePosts = res.data.posts;
 
     AppState.page = res.data.page
     AppState.totalPages = res.data.totalPages
     AppState.newerPage = res.data.newer
     AppState.olderPage = res.data.older
+  }
+
+  clearAppState(){
+    AppState.activeProfile = null
+    AppState.profilePosts = []
   }
 }
 
