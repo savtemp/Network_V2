@@ -111,7 +111,7 @@ export default {
 }
 
 .postImg {
-  height: 60VH;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
