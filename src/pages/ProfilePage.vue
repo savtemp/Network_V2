@@ -5,9 +5,9 @@
       
       <div class="col-10 justify-content-center bg-white text-dark p-0 rounded elevation-4 my-4">
         <div>
-          <img class="img-fluid cover-img" :src="profile.coverImg" alt="">
+          <img class="coverImg" :src="profile.coverImg" alt="">
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between my-2">
           <div class="px-3">
             <img class="movement" :src="profile.picture" alt="">
           </div>
@@ -114,9 +114,9 @@ export default {
 
 <style scoped>
 .coverImg {
-  /* height: 25VH; */
-  /* height: 200px;
-  width: 200px; */
+  height: 25vh;
+  width: 100%;
+  object-fit: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
